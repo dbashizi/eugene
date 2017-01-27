@@ -20,19 +20,19 @@ public class JSONController {
     @Autowired
     PersonRepository people;
 
-    @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Not Found")
-    public class NotFoundException extends Exception {
-
-        public NotFoundException() {
-        }
-    }
+//    @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Not Found")
+//    public class NotFoundException extends Exception {
+//
+//        public NotFoundException() {
+//        }
+//    }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public HashMap login(HttpSession session, String email, String password) throws Exception {
         HashMap login = new HashMap();
         Person personEmail = people.findByEmail(email);
         if (personEmail == null) {
-            throw new NotFoundException();
+            throw new Exception("that email doesn't exist in our database");
         } else if (!password.equals(personEmail.getPassword())) {
             throw new Exception("Incorrect password");
         }
