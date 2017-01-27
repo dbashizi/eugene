@@ -21,7 +21,11 @@ public class JSONController {
     public String login(HttpSession session, String email, String password) throws Exception {
         Person personEmail = people.findByEmail(email);
         if (personEmail == null) {
-            throw new Exception("that email address does not exist in our database");
+            try {
+                throw new Exception("that email address does not exist in our database");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         } else if (!password.equals(personEmail.getPassword())) {
             throw new Exception("Incorrect password");
         }
