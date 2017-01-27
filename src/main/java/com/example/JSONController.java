@@ -1,8 +1,10 @@
 package com.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -18,20 +20,23 @@ public class JSONController {
     @Autowired
     PersonRepository people;
 
+    @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Not Found")
+    public class NotFoundException extends Exception {
+
+        public NotFoundException() {
+        }
+    }
+
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public HttpSession login(HttpSession session, String email, String password) throws Exception {
+    public String login(HttpSession session, String email, String password) throws Exception {
         Person personEmail = people.findByEmail(email);
         if (personEmail == null) {
-            try {
-                throw new Exception("that email address does not exist in our database");
-            } catch (Exception e){
-                e.printStackTrace();
-            }
+            throw new NotFoundException();
         } else if (!password.equals(personEmail.getPassword())) {
             throw new Exception("Incorrect password");
         }
         session.setAttribute("person", personEmail);
-        return session;
+        return "redirect:/";
     }
 
 
