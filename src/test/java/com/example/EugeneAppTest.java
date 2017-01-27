@@ -29,6 +29,9 @@ public class EugeneAppTest {
     @Autowired
     PersonRepository people;
 
+    @Autowired
+    EventRepository events;
+
     @Test
     public void testAddPersonToDatabase() throws Exception {
         Iterable<Person> allPeople = people.findAll();
@@ -57,6 +60,39 @@ public class EugeneAppTest {
         allPeople = people.findAll();
         int afterDeleteSize = 0;
         for (Person person : allPeople) {
+            afterDeleteSize++;
+        }
+
+        assertEquals(initSize, afterDeleteSize);
+    }
+
+    @Test
+    public void testAddEventToDatabase() throws Exception {
+        Iterable<Event> allEvents = events.findAll();
+        int initSize = 0;
+        for (Event event : allEvents) {
+            initSize++;
+        }
+
+        Event testEvent = new Event(null, "Java Crash Course", "Jan 26th @ 6:00", "TIY", "MLK BLVD");
+        events.save(testEvent);
+
+        assertNotNull(testEvent.getId());
+        System.out.println("testEvent: " + testEvent.getId());
+
+        allEvents = events.findAll();
+        int afterSize = 0;
+        for (Event event : allEvents) {
+            afterSize++;
+        }
+
+        assertEquals(initSize + 1, afterSize);
+
+        events.delete(testEvent);
+
+        allEvents = events.findAll();
+        int afterDeleteSize = 0;
+        for (Event event : allEvents) {
             afterDeleteSize++;
         }
 

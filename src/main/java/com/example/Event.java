@@ -10,7 +10,7 @@ public class Event {
 
     @Id
     @GeneratedValue
-    int id;
+    Integer id;
 
     @Column(nullable = false)
     String name;
@@ -28,11 +28,20 @@ public class Event {
     public Event() {
     }
 
-    public Event(String name, String startTime, String location, String address) {
+    public Event(Integer id, String name, String startTime, String location, String address) {
+        this.id = id;
         this.name = name;
         this.startTime = startTime;
         this.location = location;
         this.address = address;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

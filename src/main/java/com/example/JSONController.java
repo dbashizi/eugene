@@ -28,15 +28,17 @@ public class JSONController {
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public Person login(HttpSession session, String email, String password) throws Exception {
+    public HashMap login(HttpSession session, String email, String password) throws Exception {
+        HashMap login = new HashMap();
         Person personEmail = people.findByEmail(email);
         if (personEmail == null) {
             throw new NotFoundException();
         } else if (!password.equals(personEmail.getPassword())) {
             throw new Exception("Incorrect password");
         }
+        login.put(email, password);
         session.setAttribute("person", personEmail);
-        return personEmail;
+        return login;
     }
 
 
