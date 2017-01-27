@@ -1,0 +1,24 @@
+<html>
+<body>
+<form action="/add-event" method="post">
+    <input type="text" placeholder="Name" name="name"/>
+    <input type="text" placeholder="Date/time" name="startTime"/>
+    <input type="text" placeholder="Location" name="location"/>
+    <input type="text" placeholder="Address" name="address"/>
+    <button type="submit">Add Event</button>
+</form>
+
+<ol>
+    {{#events}}
+    <li>{{name}} {{startTime}} {{location}} {{address}} --- <a href="/delete?eventId={{id}}">Delete Event</a></li>
+    {{/events}}
+</ol>
+
+<ol>
+    {{#people}}
+    <li>Name: {{firstName}} {{lastName}} Company: {{company}} Job Title: {{position}} email: {{email}}</li>
+    {{/people}}
+</ol>
+
+</body>
+</html>
