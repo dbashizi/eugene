@@ -6,7 +6,7 @@ import java.util.ArrayList;
 @Entity
 @Table(name = "people")
 public class Person {
-    
+
     @Id
     @GeneratedValue
     Integer id;
