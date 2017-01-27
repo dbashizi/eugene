@@ -28,7 +28,7 @@ public class JSONController {
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String login(HttpSession session, String email, String password) throws Exception {
+    public Person login(HttpSession session, String email, String password) throws Exception {
         Person personEmail = people.findByEmail(email);
         if (personEmail == null) {
             throw new NotFoundException();
@@ -36,7 +36,7 @@ public class JSONController {
             throw new Exception("Incorrect password");
         }
         session.setAttribute("person", personEmail);
-        return "redirect:/";
+        return personEmail;
     }
 
 
