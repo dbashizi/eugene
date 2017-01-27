@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 /**
  * Created by conorthomas on 1/26/17.
@@ -18,7 +19,7 @@ public class JSONController {
     PersonRepository people;
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String login(HttpSession session, String email, String password) throws Exception {
+    public HttpSession login(HttpSession session, String email, String password) throws Exception {
         Person personEmail = people.findByEmail(email);
         if (personEmail == null) {
             try {
@@ -30,7 +31,7 @@ public class JSONController {
             throw new Exception("Incorrect password");
         }
         session.setAttribute("person", personEmail);
-        return "redirect:/";
+        return session;
     }
 
 
