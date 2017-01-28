@@ -26,7 +26,6 @@ public class Event {
     @Column(nullable = false)
     private Timestamp eventTime;
 
-
     public Event() {
     }
 
