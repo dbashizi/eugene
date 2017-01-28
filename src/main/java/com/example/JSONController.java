@@ -7,22 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 
-/**
- * Created by conorthomas on 1/26/17.
- */
-
 @RestController
 public class JSONController {
 
     @Autowired
     PersonRepository people;
 
-//    @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Not Found")
-//    public class NotFoundException extends Exception {
-//
-//        public NotFoundException() {
-//        }
-//    }
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
     public HashMap login(HttpSession session, String email, String password) throws Exception {
@@ -40,7 +30,8 @@ public class JSONController {
 
 
     @RequestMapping(path = "/registeraccount", method = RequestMethod.POST)
-    public void register(@RequestBody Person person) {
+    public Person register(@RequestBody Person person) {
         people.save(person);
+        return person;
     }
 }
