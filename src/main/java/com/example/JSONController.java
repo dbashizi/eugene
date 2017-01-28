@@ -2,10 +2,7 @@ package com.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -27,7 +24,7 @@ public class JSONController {
 //        }
 //    }
 
-    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    @RequestMapping(path = "/login", method = RequestMethod.GET)
     public HashMap login(HttpSession session, String email, String password) throws Exception {
         HashMap login = new HashMap();
         Person personEmail = people.findByEmail(email);
@@ -43,8 +40,7 @@ public class JSONController {
 
 
     @RequestMapping(path = "/registeraccount", method = RequestMethod.POST)
-    public String register(HttpSession session, String firstName, String lastName, String company, String picture,
-                           boolean sharePicture, String position, String email, String password) {
-     return "redirect:/";
+    public void register(@RequestBody Person person) {
+        people.save(person);
     }
 }
