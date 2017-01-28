@@ -41,7 +41,7 @@ public class EugeneAppTest {
         }
 
         Person testPerson = new Person(null, "Conor", "Thomas", "The Iron Yard",
-                "Student", "m.conorthomas@gmail.com", "092193");
+                "Student", "m.conorthomas@gmail.com", "092193", false);
         people.save(testPerson);
 
         assertNotNull(testPerson.getId());

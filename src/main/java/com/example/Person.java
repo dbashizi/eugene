@@ -9,32 +9,34 @@ public class Person {
 
     @Id
     @GeneratedValue
-    Integer id;
+    private Integer id;
 
     @Column(nullable = false, unique = true)
-    String email;
+    private String email;
 
     @Column(nullable = false)
-    String firstName;
+    private String firstName;
 
     @Column(nullable = false)
-    String lastName;
+    private String lastName;
 
     @Column(nullable = false)
-    String company;
+    private String company;
 
     // picture?
+    @Column(nullable = false)
+    private boolean sharePicture;
 
     @Column(nullable = false)
-    String position;
+    private String position;
 
     @Column(nullable = false)
-    String password;
+    private String password;
 
     public Person() {
     }
 
-    public Person(Integer id, String firstName, String lastName, String company, String position, String email, String password) {
+    public Person(Integer id, String firstName, String lastName, String company, String position, String email, String password, boolean sharePicture) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,6 +44,15 @@ public class Person {
         this.position = position;
         this.email = email;
         this.password = password;
+        this.sharePicture = sharePicture;
+    }
+
+    public boolean isSharePicture() {
+        return sharePicture;
+    }
+
+    public void setSharePicture(boolean sharePicture) {
+        this.sharePicture = sharePicture;
     }
 
     public Integer getId() {

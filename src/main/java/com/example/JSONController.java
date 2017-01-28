@@ -40,8 +40,8 @@ public class JSONController {
 
     @RequestMapping(path = "/get_people", method = RequestMethod.GET)
     public List<Person> getPeople() {
-        Person personOne = new Person(1, "conor", "thomas", "tiy", "student", "test@gmail.com", "password");
-        Person personTwo = new Person(2, "lynsey", "thomas", "buckhead church", "groups director", "test2@gmail.com", "password");
+        Person personOne = new Person(1, "conor", "thomas", "tiy", "student", "test@gmail.com", "password", false);
+        Person personTwo = new Person(2, "lynsey", "thomas", "buckhead church", "groups director", "test2@gmail.com", "password", false);
 
         List<Person> personList = new ArrayList<>();
         personList.add(personOne);
