@@ -122,4 +122,15 @@ public class JSONController {
         }
         return personList;
     }
+
+    @RequestMapping(path = "/eventlist", method = RequestMethod.GET)
+    public List<Event> getEvents() {
+        List<Event> eventList = new ArrayList<>();
+
+        Iterable<Event> allEvents = events.findAll();
+        for (Event event : allEvents) {
+            eventList.add(event);
+        }
+        return eventList;
+    }
 }
