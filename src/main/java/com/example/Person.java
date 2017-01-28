@@ -2,10 +2,13 @@ package com.example;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Set;
 
 @Entity
 @Table(name = "people")
 public class Person {
+
+    private Set<Event> events;
 
     @Id
     @GeneratedValue
@@ -45,6 +48,15 @@ public class Person {
         this.email = email;
         this.password = password;
         this.sharePicture = sharePicture;
+    }
+
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy="people")
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
     }
 
     public boolean isSharePicture() {

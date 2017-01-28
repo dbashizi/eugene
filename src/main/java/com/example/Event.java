@@ -1,14 +1,18 @@
 package com.example;
 
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
+
 import javax.persistence.*;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Set;
 
 @Entity
 @Table(name = "events")
 public class Event {
+
+    private Set<Person> people;
 
     @Id
     @GeneratedValue
@@ -35,6 +39,16 @@ public class Event {
         this.location = location;
         this.address = address;
         this.eventTime =eventTime;
+    }
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="event_person", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=@JoinColumn(name="id"))
+    public Set<Person> getPeople() {
+        return people;
+    }
+
+    public void setPeople(Set<Person> people) {
+        this.people = people;
     }
 
     public Timestamp getEventTime() {
