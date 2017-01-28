@@ -17,17 +17,15 @@ public class JSONController {
 
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public Person login(HttpSession session, String email, String password) throws Exception {
+    public Person login(@RequestBody RequestLogin requestLogin) throws Exception {
         //HashMap login = new HashMap();
-        Person person = people.findByEmail("jon@gmail.com");
+        Person person = people.findByEmail(requestLogin.getEmail());
         if (person == null) {
-            throw  new Exception("that email doesn't exist");
+            throw new Exception("that email doesn't exist");
         }
-        else if (!password.equals(person.getPassword())) {
+        else if (!requestLogin.getPassword().equals(person.getPassword())) {
             throw new Exception("Incorrect password");
-        } else {
-            session.setAttribute("person", person);
-        }
+        } 
         return person;
     }
 
