@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +43,8 @@ public class EugeneController {
     }
 
     @RequestMapping(path = "/add-event", method = RequestMethod.POST)
-    public String addEvent(String name, String location, String startTime, String address) {
-        Event event = new Event(null, name, startTime, location, address, null);
+    public String addEvent(String name, String location, String address, Timestamp eventTime) {
+        Event event = new Event(null, name, location, address, eventTime);
         events.save(event);
         return "redirect:/admin";
     }

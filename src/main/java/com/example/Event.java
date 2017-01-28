@@ -18,9 +18,6 @@ public class Event {
     private String name;
 
     @Column(nullable = false)
-    private String startTime;
-
-    @Column(nullable = false)
     private String location;
 
     @Column(nullable = false)
@@ -33,10 +30,9 @@ public class Event {
     public Event() {
     }
 
-    public Event(Integer id, String name, String startTime, String location, String address, Timestamp eventTime) {
+    public Event(Integer id, String name, String location, String address, Timestamp eventTime) {
         this.id = id;
         this.name = name;
-        this.startTime = startTime;
         this.location = location;
         this.address = address;
         this.eventTime =eventTime;
@@ -64,14 +60,6 @@ public class Event {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
     }
 
     public String getLocation() {

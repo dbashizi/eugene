@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,7 +64,7 @@ public class JSONController {
             event.setName("Test123456");
             event.setLocation("The Iron Yard");
             event.setAddress("MLK Blvd Atlanta, GA");
-            event.setStartTime("Jan 29th @ 4:00pm");
+            event.setEventTime(Timestamp.from(Instant.now()));
             events.save(event);
         }
 
@@ -71,7 +73,7 @@ public class JSONController {
             event.setName("Test2468");
             event.setLocation("ATV");
             event.setAddress("3700 Piedmont Road NE Atlanta GA");
-            event.setStartTime("Feb 6th @ 4:00pm");
+            event.setEventTime(Timestamp.from(Instant.now()));
             events.save(event);
         }
 
@@ -80,7 +82,7 @@ public class JSONController {
             event.setName("Test1357");
             event.setLocation("Georgia Dome");
             event.setAddress("MLK Blvd Atlanta, GA");
-            event.setStartTime("Feb 24th 6:00pm");
+            event.setEventTime(Timestamp.from(Instant.now()));
             events.save(event);
         }
     }

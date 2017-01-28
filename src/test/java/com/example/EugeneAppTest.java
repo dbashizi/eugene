@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +77,7 @@ public class EugeneAppTest {
             initSize++;
         }
 
-        Event testEvent = new Event(null, "Java Crash Course", "Jan 26th @ 6:00", "TIY", "MLK BLVD", null);
+        Event testEvent = new Event(null, "Java Crash Course", "TIY", "MLK BLVD", java.sql.Timestamp.from(Instant.now()));
         events.save(testEvent);
 
         assertNotNull(testEvent.getId());
