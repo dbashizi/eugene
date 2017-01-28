@@ -19,7 +19,7 @@ public class JSONController {
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public Person login(HttpSession session, String email, String password) throws Exception {
         //HashMap login = new HashMap();
-        Person personEmail = people.findOne(22);
+        Person personEmail = people.findByEmail(email);
         if (personEmail == null) {
             throw new Exception("that email doesn't exist in our database");
         } else if (!password.equals(personEmail.getPassword())) {
