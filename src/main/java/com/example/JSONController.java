@@ -5,7 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class JSONController {
@@ -33,5 +35,21 @@ public class JSONController {
     public Person register(@RequestBody Person person) {
         people.save(person);
         return person;
+    }
+
+    @RequestMapping(path = "/get_people", method = RequestMethod.GET)
+    public List<Person> getPeople() {
+        Person personOne = new Person(1, "conor", "thomas", "tiy", "student", "test@gmail.com", "password");
+        Person personTwo = new Person(1, "lynsey", "thomas", "buckhead church", "groups director", "test2@gmail.com", "password");
+
+        List<Person> personList = new ArrayList<>();
+        personList.add(personOne);
+        personList.add(personTwo);
+
+        Iterable<Person> allPeople = people.findAll();
+        for (Person person : allPeople) {
+            personList.add(person)
+        }
+        return personList;
     }
 }
