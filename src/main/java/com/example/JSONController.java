@@ -63,6 +63,7 @@ public class JSONController {
             event.setLocation("The Iron Yard");
             event.setAddress("MLK Blvd Atlanta, GA");
             event.setStartTime("Jan 29th @ 4:00pm");
+            events.save(event);
         }
 
         if (events.findByName("Test2468") == null) {
@@ -71,6 +72,7 @@ public class JSONController {
             event.setLocation("ATV");
             event.setAddress("3700 Piedmont Road NE Atlanta GA");
             event.setStartTime("Feb 6th @ 4:00pm");
+            events.save(event);
         }
 
         if (events.findByName("Test1357") == null) {
@@ -79,6 +81,7 @@ public class JSONController {
             event.setLocation("Georgia Dome");
             event.setAddress("MLK Blvd Atlanta, GA");
             event.setStartTime("Feb 24th 6:00pm");
+            events.save(event);
         }
     }
 
