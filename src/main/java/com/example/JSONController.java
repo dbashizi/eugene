@@ -40,8 +40,7 @@ public class JSONController {
 
 
     @RequestMapping(path = "/registeraccount", method = RequestMethod.POST)
-    public Person register(@RequestBody Person person) {
+    public void register(@RequestBody Person person) {
         people.save(person);
-        return person;
     }
 }
