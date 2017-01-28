@@ -43,7 +43,7 @@ public class EugeneController {
 
     @RequestMapping(path = "/add-event", method = RequestMethod.POST)
     public String addEvent(String name, String location, String startTime, String address) {
-        Event event = new Event(null, name, startTime, location, address);
+        Event event = new Event(null, name, startTime, location, address, null);
         events.save(event);
         return "redirect:/admin";
     }

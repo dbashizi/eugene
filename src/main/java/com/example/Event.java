@@ -1,6 +1,7 @@
 package com.example;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,29 +26,29 @@ public class Event {
     @Column(nullable = false)
     private String address;
 
-//    @Column(nullable = false)
-//    private java.sql.Timestamp eventTime;
+    @Column(nullable = false)
+    private Timestamp eventTime;
 
 
     public Event() {
     }
 
-    public Event(Integer id, String name, String startTime, String location, String address) {
+    public Event(Integer id, String name, String startTime, String location, String address, Timestamp eventTime) {
         this.id = id;
         this.name = name;
         this.startTime = startTime;
         this.location = location;
         this.address = address;
-        //this.eventTime =eventTime;
+        this.eventTime =eventTime;
     }
 
-//    public Timestamp getEventTime() {
-//        return eventTime;
-//    }
-//
-//    public void setEventTime(Timestamp eventTime) {
-//        this.eventTime = eventTime;
-//    }
+    public Timestamp getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(Timestamp eventTime) {
+        this.eventTime = eventTime;
+    }
 
     public Integer getId() {
         return id;

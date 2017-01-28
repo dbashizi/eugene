@@ -74,7 +74,7 @@ public class EugeneAppTest {
             initSize++;
         }
 
-        Event testEvent = new Event(null, "Java Crash Course", "Jan 26th @ 6:00", "TIY", "MLK BLVD");
+        Event testEvent = new Event(null, "Java Crash Course", "Jan 26th @ 6:00", "TIY", "MLK BLVD", null);
         events.save(testEvent);
 
         assertNotNull(testEvent.getId());

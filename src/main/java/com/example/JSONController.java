@@ -88,7 +88,6 @@ public class JSONController {
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public Person login(@RequestBody RequestLogin requestLogin) throws Exception {
-        //HashMap login = new HashMap();
         Person person = people.findByEmail(requestLogin.getEmail());
         if (person == null) {
             throw new Exception("that email doesn't exist");
