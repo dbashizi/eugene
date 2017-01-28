@@ -48,7 +48,7 @@ public class JSONController {
 
         Iterable<Person> allPeople = people.findAll();
         for (Person person : allPeople) {
-            personList.add(person)
+            personList.add(person);
         }
         return personList;
     }
