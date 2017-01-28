@@ -1,18 +1,16 @@
 package com.example;
 
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+
 import java.util.Set;
+
 
 @Entity
 @Table(name = "events")
 public class Event {
 
-    private Set<Person> people;
+
 
     @Id
     @GeneratedValue
@@ -39,16 +37,6 @@ public class Event {
         this.location = location;
         this.address = address;
         this.eventTime =eventTime;
-    }
-
-    @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="event_person", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=@JoinColumn(name="id"))
-    public Set<Person> getPeople() {
-        return people;
-    }
-
-    public void setPeople(Set<Person> people) {
-        this.people = people;
     }
 
     public Timestamp getEventTime() {
@@ -91,3 +79,54 @@ public class Event {
         this.address = address;
     }
 }
+//import java.util.Set;
+//
+//        import javax.persistence.CascadeType;
+//        import javax.persistence.Column;
+//        import javax.persistence.Entity;
+//        import javax.persistence.GeneratedValue;
+//        import javax.persistence.GenerationType;
+//        import javax.persistence.Id;
+//        import javax.persistence.JoinColumn;
+//        import javax.persistence.JoinTable;
+//        import javax.persistence.ManyToMany;
+//
+//@Entity
+//public class Event
+//{
+//    private Long eventId;
+//    private String name;
+//    private Set<Person> persons;
+//
+//    @Id
+//    @GeneratedValue(strategy=GenerationType.AUTO)
+//    @Column(name="event_id")
+//    public Long getEventId()
+//    {
+//        return eventId;
+//    }
+//    public void setEventId(Long eventId)
+//    {
+//        this.eventId = eventId;
+//    }
+//
+//    @Column(name="event_name")
+//    public String getName()
+//    {
+//        return name;
+//    }
+//    public void setName(String name)
+//    {
+//        this.name = name;
+//    }
+//    @ManyToMany(cascade=CascadeType.ALL)
+//    @JoinTable(name="person_event", joinColumns=@JoinColumn(name="event_id"), inverseJoinColumns=@JoinColumn(name="person_id"))
+//    public Set<Person> getPersons()
+//    {
+//        return persons;
+//    }
+//    public void setPersons(Set<Person> persons)
+//    {
+//        this.persons = persons;
+//    }
+//}

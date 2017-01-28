@@ -4,15 +4,19 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Set;
 
+
 @Entity
 @Table(name = "people")
 public class Person {
 
+    @ManyToMany
+    @JoinTable(name="person_event", joinColumns=@JoinColumn(name="person_id"),
+            inverseJoinColumns=@JoinColumn(name="event_id"))
     private Set<Event> events;
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -36,10 +40,13 @@ public class Person {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = true)
+    private Long eventId;
+
     public Person() {
     }
 
-    public Person(Integer id, String firstName, String lastName, String company, String position, String email, String password, boolean sharePicture) {
+    public Person(Long id, String firstName, String lastName, String company, String position, String email, String password, boolean sharePicture, Long eventId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -50,13 +57,20 @@ public class Person {
         this.sharePicture = sharePicture;
     }
 
-    @ManyToMany(cascade=CascadeType.ALL, mappedBy="people")
     public Set<Event> getEvents() {
         return events;
     }
 
     public void setEvents(Set<Event> events) {
         this.events = events;
+    }
+
+    public Long getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(Long eventId) {
+        this.eventId = eventId;
     }
 
     public boolean isSharePicture() {
@@ -67,11 +81,11 @@ public class Person {
         this.sharePicture = sharePicture;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -124,3 +138,4 @@ public class Person {
     }
 
 }
+
