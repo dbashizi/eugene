@@ -12,7 +12,7 @@ public class Event {
 
     @OneToMany
     @Column
-    Set<Person> attendees;
+    private Set<Person> attendees;
 
     @Id
     @GeneratedValue

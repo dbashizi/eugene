@@ -8,9 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class JSONController {
@@ -21,8 +19,10 @@ public class JSONController {
     @Autowired
     EventRepository events;
 
+
     @PostConstruct
     public void init() {
+        Set<Person> attendees = new HashSet<>();
         if (people.findByEmail("joe@gmail.com") == null) {
             Person person = new Person();
             person.setFirstName("Joe");
@@ -33,6 +33,7 @@ public class JSONController {
             person.setSharePicture(false);
             person.setPassword("password");
             people.save(person);
+            attendees.add(person);
         }
 
         if (people.findByEmail("carson@gmail.com") == null) {
@@ -45,6 +46,7 @@ public class JSONController {
             person.setSharePicture(false);
             person.setPassword("password");
             people.save(person);
+            attendees.add(person);
         }
 
         if (people.findByEmail("michael@gmail.com") == null) {
@@ -57,6 +59,7 @@ public class JSONController {
             person.setSharePicture(false);
             person.setPassword("password");
             people.save(person);
+            attendees.add(person);
         }
 
         if (events.findByName("Test123456") == null) {
@@ -65,6 +68,7 @@ public class JSONController {
             event.setLocation("The Iron Yard");
             event.setAddress("MLK Blvd Atlanta, GA");
             event.setEventTime(Timestamp.from(Instant.now()));
+            event.setAttendees(attendees);
             events.save(event);
         }
 
@@ -74,6 +78,7 @@ public class JSONController {
             event.setLocation("ATV");
             event.setAddress("3700 Piedmont Road NE Atlanta GA");
             event.setEventTime(Timestamp.from(Instant.now()));
+            event.setAttendees(attendees);
             events.save(event);
         }
 
@@ -83,6 +88,7 @@ public class JSONController {
             event.setLocation("Georgia Dome");
             event.setAddress("MLK Blvd Atlanta, GA");
             event.setEventTime(Timestamp.from(Instant.now()));
+            event.setAttendees(null);
             events.save(event);
         }
     }
