@@ -55,6 +55,7 @@ public class Person {
         this.email = email;
         this.password = password;
         this.sharePicture = sharePicture;
+        this.eventId = eventId;
     }
 
     public Set<Event> getEvents() {
