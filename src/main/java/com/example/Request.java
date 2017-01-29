@@ -1,6 +1,7 @@
 package com.example;
 
 import javax.persistence.OneToOne;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -10,6 +11,8 @@ public class Request {
 
     private ArrayList<Person> incoming;
     private ArrayList<Person> outgoing;
+
+    private Timestamp requestTime;
 
     public Request() {
     }

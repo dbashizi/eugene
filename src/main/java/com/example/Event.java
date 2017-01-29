@@ -10,11 +10,13 @@ import java.util.Set;
 @Table(name = "events")
 public class Event {
 
-
+    @OneToMany
+    @Column
+    Set<Person> attendees;
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -31,12 +33,21 @@ public class Event {
     public Event() {
     }
 
-    public Event(Integer id, String name, String location, String address, Timestamp eventTime) {
+    public Event(Long id, String name, String location, String address, Timestamp eventTime, Set<Person> attendees) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.address = address;
         this.eventTime =eventTime;
+        this.attendees = attendees;
+    }
+
+    public Set<Person> getAttendees() {
+        return attendees;
+    }
+
+    public void setAttendees(Set<Person> attendees) {
+        this.attendees = attendees;
     }
 
     public Timestamp getEventTime() {
@@ -47,11 +58,11 @@ public class Event {
         this.eventTime = eventTime;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
