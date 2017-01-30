@@ -3,6 +3,7 @@ package com.example;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -10,8 +11,6 @@ import java.util.Set;
 @Table(name = "events")
 public class Event {
 
-    @OneToMany
-    @Column
     private Set<Person> attendees;
 
     @Id
@@ -33,15 +32,16 @@ public class Event {
     public Event() {
     }
 
-    public Event(Long id, String name, String location, String address, Timestamp eventTime, Set<Person> attendees) {
+    public Event(Long id, String name, String location, String address, Timestamp eventTime) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.address = address;
         this.eventTime =eventTime;
-        this.attendees = attendees;
+        //this.attendees = attendees;
     }
 
+    @OneToMany(mappedBy = "event")
     public Set<Person> getAttendees() {
         return attendees;
     }

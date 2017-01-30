@@ -9,10 +9,9 @@ import java.util.Set;
 @Table(name = "people")
 public class Person {
 
-    @ManyToMany
-    @JoinTable(name="person_event", joinColumns=@JoinColumn(name="person_id"),
-            inverseJoinColumns=@JoinColumn(name="event_id"))
-    private Set<Event> events;
+//    @ManyToMany
+//    @JoinTable(name="person_event", joinColumns=@JoinColumn(name="person_id"),
+//            inverseJoinColumns=@JoinColumn(name="event_id"))
 
     @Id
     @GeneratedValue
@@ -43,6 +42,8 @@ public class Person {
     @Column(nullable = true)
     private Long eventId;
 
+    private Event event;
+
     public Person() {
     }
 
@@ -58,12 +59,13 @@ public class Person {
         this.eventId = eventId;
     }
 
-    public Set<Event> getEvents() {
-        return events;
+    @ManyToOne
+    public Event getEvent() {
+        return event;
     }
 
-    public void setEvents(Set<Event> events) {
-        this.events = events;
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
     public Long getEventId() {

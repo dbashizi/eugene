@@ -19,10 +19,10 @@ public class JSONController {
     @Autowired
     EventRepository events;
 
+    Set<Person> attendees = new HashSet<>();
 
     @PostConstruct
     public void init() {
-        Set<Person> attendees = new HashSet<>();
         if (people.findByEmail("joe@gmail.com") == null) {
             Person person = new Person();
             person.setFirstName("Joe");
@@ -68,7 +68,7 @@ public class JSONController {
             event.setLocation("The Iron Yard");
             event.setAddress("MLK Blvd Atlanta, GA");
             event.setEventTime(Timestamp.from(Instant.now()));
-            event.setAttendees(attendees);
+            event.setAttendees(null);
             events.save(event);
         }
 
@@ -78,7 +78,7 @@ public class JSONController {
             event.setLocation("ATV");
             event.setAddress("3700 Piedmont Road NE Atlanta GA");
             event.setEventTime(Timestamp.from(Instant.now()));
-            event.setAttendees(attendees);
+            event.setAttendees(null);
             events.save(event);
         }
 
@@ -88,7 +88,7 @@ public class JSONController {
             event.setLocation("Georgia Dome");
             event.setAddress("MLK Blvd Atlanta, GA");
             event.setEventTime(Timestamp.from(Instant.now()));
-            event.setAttendees(null);
+            event.setAttendees(attendees);
             events.save(event);
         }
     }
